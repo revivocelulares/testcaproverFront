@@ -7,11 +7,7 @@ RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
-COPY ./ /usr/src/app/
-
-RUN npm install --production && npm cache clean --force
-
-RUN npm run build && cp -rf ./dist /usr/src/app/
+COPY ./dist /usr/src/app/
 
 ENV NODE_ENV production
 
