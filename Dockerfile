@@ -11,4 +11,4 @@ COPY ./dist /usr/src/app/
 
 ENV NODE_ENV production
 
-EXPOSE 80
+EXPOSE 5173
