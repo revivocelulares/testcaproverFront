@@ -11,9 +11,7 @@ COPY ./ /usr/src/app/
 
 RUN npm install --production && npm cache clean --force
 
-RUN npm run build
-
-COPY ./dist /usr/src/app/
+RUN npm run build && cp -rf ./dist /usr/src/app/
 
 ENV NODE_ENV production
 
