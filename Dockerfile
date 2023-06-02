@@ -13,8 +13,6 @@ RUN npm install --production && npm cache clean --force
 
 RUN npm run build
 
-COPY ./dist /usr/src/app/
-
 ENV NODE_ENV production
 
 EXPOSE 80
