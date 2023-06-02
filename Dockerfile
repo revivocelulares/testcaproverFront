@@ -1,14 +1,6 @@
-FROM node:18-alpine
+FROM socialengine/nginx-spa:latest
 
-RUN apk update && apk upgrade && \
-    apk add --no-cache git
+COPY ./dist /app
 
-RUN mkdir -p /usr/src/app
+RUN chmod -R 777 /app
 
-WORKDIR /usr/src/app
-
-COPY ./dist /usr/src/app/
-
-ENV NODE_ENV production
-
-EXPOSE 5173
