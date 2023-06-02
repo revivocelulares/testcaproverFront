@@ -13,7 +13,7 @@ RUN npm install --production && npm cache clean --force
 
 CMD ["npm", "run", "build"]
 
-COPY /dist /usr/src/app/
+COPY ./dist /usr/src/app/
 
 ENV NODE_ENV production
 
