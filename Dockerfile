@@ -4,28 +4,27 @@
 
 # RUN chmod -R 777 /app
 
-FROM node:18-alpine
+FROM node:18-alpine as build
 
-RUN apk update && apk upgrade && \
-    apk add --no-cache git
+WORKDIR /app
 
-RUN mkdir -p /usr/src/app
-
-WORKDIR /usr/src/app
-
-COPY ./ /usr/src/app/
+COPY . /app
 
 RUN npm install --production && npm cache clean --force
 
+ENV PATH /app/node_modules/.bin:$PATH
+
 RUN npm run build
 
-FROM socialengine/nginx-spa:latest as build
+FROM nginx:alpine
 
-COPY ./dist /usr/src/app/
+COPY --from=build /app/dist /usr/share/nginx/html
 
-RUN chmod -R 777 /usr/src/app/
+RUN rm /etc/nginx/conf.d/default.conf
 
-ENV NODE_ENV production
+COPY nginx/nginx.conf /etc/nginx/conf.d
 
 EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
 
