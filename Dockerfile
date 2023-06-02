@@ -17,9 +17,9 @@ COPY ./ /usr/src/app/
 
 RUN npm install --production && npm cache clean --force
 
-FROM socialengine/nginx-spa:latest as build
-
 RUN npm run build
+
+FROM socialengine/nginx-spa:latest as build
 
 COPY ./dist /usr/src/app/
 
