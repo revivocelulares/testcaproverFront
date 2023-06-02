@@ -16,15 +16,9 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 RUN npm run build
 
-FROM nginx:alpine
+FROM socialengine/nginx-spa:latest
 
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /app
 
-RUN rm /etc/nginx/conf.d/default.conf
-
-COPY nginx/nginx.conf /etc/nginx/conf.d
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+RUN chmod -R 777 /app
 
