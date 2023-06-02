@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <h1>PARA LA ROMI QUE LO MIRA CHROME!!!!!</h1>
+      <h1>PARA LA ROMI QUE LO MIRA POR CHROME</h1>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
